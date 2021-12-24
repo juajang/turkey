@@ -4,16 +4,20 @@ import "antd/dist/antd.css";
 import "./App.css";
 
 import Header from "./components/common/Header";
-import Main from "./pages/Main";
-import Timeline from "./pages/Timeline";
+import Feed from "./pages/Feed";
+import Community from "./pages/Community";
+import UserPage from "./pages/UserPage";
+import PickMe from "./pages/PickMe";
 
 function App() {
   return (
     <BrowserRouter>
       <Header />
       <Routes>
-        <Route exact path="/" element={<Main />} />
-        <Route path="timeline" element={<Timeline />} />
+        <Route exact path="/" element={<Feed />} />
+        <Route path="community" element={<Community />} />
+        <Route path="user" element={<UserPage />} />
+        <Route path="pick-me" element={<PickMe />} />
       </Routes>
     </BrowserRouter>
   );

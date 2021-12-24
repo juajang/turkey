@@ -12,6 +12,10 @@ const HeaderWrapper = styled.header`
   align-content: center;
   font-size: 14px;
 
+  .ant-divider-horizontal {
+    margin: 12px;
+  }
+
   h1 {
     display: grid;
     width: 100%;
@@ -30,6 +34,14 @@ const MenuButton = styled.button`
 
 const MenuItem = styled.div`
   padding: 0.5em 0;
+`;
+
+const DrawerContents = styled.div`
+  font-size: 20px;
+  font-weight: 550;
+  a {
+    color: black;
+  }
 `;
 
 const Header = () => {
@@ -52,20 +64,27 @@ const Header = () => {
         <h1>칠면조</h1>
       </HeaderWrapper>
       <Drawer
-        title="메뉴"
         size="default"
         placement="left"
         onClose={handleClose}
         visible={menuVisible}
-        selectedKeys={["1"]}
         onClick={handleClose}
       >
-        <Link to="/">
-          <MenuItem key="1"> 메인 </MenuItem>
-        </Link>
-        <Link to="/timeline">
-          <MenuItem key="2"> 타임라인 </MenuItem>
-        </Link>
+        <DrawerContents>
+          <MenuItem> Home </MenuItem>
+          <Link to="/">
+            <MenuItem style={{ paddingLeft: "1em" }}>FEED</MenuItem>
+          </Link>
+          <Link to="/community">
+            <MenuItem style={{ paddingLeft: "1em" }}>COMMUNITY</MenuItem>
+          </Link>
+          <Link to="/pick-me">
+            <MenuItem>Pick me</MenuItem>
+          </Link>
+          <Link to="/user">
+            <MenuItem>My page</MenuItem>
+          </Link>
+        </DrawerContents>
       </Drawer>
     </>
   );
