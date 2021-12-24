@@ -1,5 +1,6 @@
-import './App.css';
 import Header from "./components/Header";
+import "antd/dist/antd.css";
+import "./App.css";
 
 function App() {
   return (
