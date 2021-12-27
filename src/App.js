@@ -8,6 +8,7 @@ import Feed from "./pages/Feed";
 import Community from "./pages/Community";
 import UserPage from "./pages/UserPage";
 import PickMe from "./pages/PickMe";
+import Recommend from "./pages/Recommend";
 
 function App() {
   return (
@@ -16,8 +17,9 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Feed />} />
         <Route path="community" element={<Community />} />
-        <Route path="user" element={<UserPage />} />
         <Route path="pick-me" element={<PickMe />} />
+        <Route path="user/wallet" element={<UserPage />} />
+        <Route path="user/recommend" element={<Recommend />} />
       </Routes>
     </BrowserRouter>
   );

@@ -32,15 +32,21 @@ const MenuButton = styled.button`
   cursor: pointer;
 `;
 
-const MenuItem = styled.div`
-  padding: 0.5em 0;
-`;
-
 const DrawerContents = styled.div`
   font-size: 20px;
-  font-weight: 550;
+  color: #13088f;
+
   a {
-    color: black;
+    color: #13088f;
+  }
+
+  .category {
+    margin-top: 10px;
+    font-weight: 650;
+  }
+
+  .menu {
+    padding: 5px 1em 0 1em;
   }
 `;
 
@@ -71,18 +77,22 @@ const Header = () => {
         onClick={handleClose}
       >
         <DrawerContents>
-          <MenuItem> Home </MenuItem>
+          <div className="category">HOME</div>
           <Link to="/">
-            <MenuItem style={{ paddingLeft: "1em" }}>FEED</MenuItem>
+            <div className="menu">FEED</div>
           </Link>
           <Link to="/community">
-            <MenuItem style={{ paddingLeft: "1em" }}>COMMUNITY</MenuItem>
+            <div className="menu">COMMUNITY</div>
+          </Link>
+          <div className="category">MY PAGE</div>
+          <Link to="user/wallet">
+            <div className="menu">WALLET</div>
+          </Link>
+          <Link to="user/recommend">
+            <div className="menu">RECOMMEND</div>
           </Link>
           <Link to="/pick-me">
-            <MenuItem>Pick me</MenuItem>
-          </Link>
-          <Link to="/user">
-            <MenuItem>My page</MenuItem>
+            <div className="category">PICK ME</div>
           </Link>
         </DrawerContents>
       </Drawer>
