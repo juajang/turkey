@@ -1,0 +1,66 @@
+{
+  "data": [
+    {
+      "like": 32,
+      "nickname": "오키오빠",
+      "income": "300",
+      "chartData": [
+        50,
+        25,
+        25
+      ]
+    },
+    {
+      "like": 32,
+      "nickname": "오키오빠",
+      "income": "300",
+      "chartData": [
+        50,
+        25,
+        25
+      ]
+    },
+    {
+      "like": 32,
+      "nickname": "오키오빠",
+      "income": "300",
+      "chartData": [
+        50,
+        25,
+        25
+      ]
+    },
+    {
+      "like": 32,
+      "nickname": "오키오빠",
+      "income": "300",
+      "chartData": [
+        50,
+        25,
+        25
+      ]
+    },
+    {
+      "like": 32,
+      "nickname": "오키오빠",
+      "income": "300",
+      "chartData": [
+        50,
+        25,
+        25
+      ],
+      "priceEarnings": 50
+    },
+    {
+      "like": 32,
+      "nickname": "오키오빠",
+      "income": "300",
+      "chartData": [
+        50,
+        25,
+        25
+      ],
+      "priceEarnings": -300
+    }
+  ]
+}
