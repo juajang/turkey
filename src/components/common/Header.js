@@ -2,27 +2,16 @@ import React from "react";
 import styled from "styled-components";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { Drawer } from "antd";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const HeaderWrapper = styled.header`
-  width: 100vw;
-  overflow: hidden;
-  height: 100px;
-  display: flex;
-  align-content: center;
-  font-size: 14px;
-
-  .ant-divider-horizontal {
-    margin: 12px;
-  }
-
-  h1 {
-    display: grid;
-    width: 100%;
-    place-items: center;
-    font-size: 25px;
-    font-weight: 550;
-  }
+  width: 100%;
+  position: relative;
+  height: 80px;
+  font-size: 25px;
+  font-weight: 550;
+  display: grid;
+  place-items: center;
 `;
 
 const MenuButton = styled.button`
@@ -30,6 +19,9 @@ const MenuButton = styled.button`
   outline: none;
   border: none;
   cursor: pointer;
+  position: absolute;
+  top: 5px;
+  left: 5px;
 `;
 
 const DrawerContents = styled.div`
@@ -52,6 +44,8 @@ const DrawerContents = styled.div`
 
 const Header = () => {
   const [menuVisible, setMenuVisible] = React.useState(false);
+  const { pathname } = useLocation();
+  const title = pathname.split("/")[1]?.toUpperCase().replace("-", " ");
 
   const handleClick = () => {
     setMenuVisible((prevState) => !prevState);
@@ -64,10 +58,10 @@ const Header = () => {
   return (
     <>
       <HeaderWrapper>
+        <h1>{title || "FEED"}</h1>
         <MenuButton>
           <GiHamburgerMenu onClick={handleClick} size={50} />
         </MenuButton>
-        <h1>칠면조</h1>
       </HeaderWrapper>
       <Drawer
         size="default"
@@ -85,10 +79,10 @@ const Header = () => {
             <div className="menu">COMMUNITY</div>
           </Link>
           <div className="category">MY PAGE</div>
-          <Link to="user/wallet">
+          <Link to="wallet">
             <div className="menu">WALLET</div>
           </Link>
-          <Link to="user/recommend">
+          <Link to="recommend">
             <div className="menu">RECOMMEND</div>
           </Link>
           <Link to="/pick-me">

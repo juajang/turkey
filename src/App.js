@@ -16,17 +16,21 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header />
-      <Routes>
-        <Route exact path="/" element={<Feed />} />
-        <Route path="community" element={<Community />} />
-        <Route path="pick-me" element={<PickMe />} />
-        <Route
-          path="user/wallet"
-          element={<Wallet dispatch={dispatch} state={state} />}
-        />
-        <Route path="user/recommend" element={<Recommend />} />
-      </Routes>
+      <div className="app">
+        <div className="app-contents">
+          <Header />
+          <Routes>
+            <Route exact path="/" element={<Feed />} />
+            <Route path="community" element={<Community />} />
+            <Route path="pick-me" element={<PickMe />} />
+            <Route
+              path="wallet"
+              element={<Wallet dispatch={dispatch} state={state} />}
+            />
+            <Route path="recommend" element={<Recommend />} />
+          </Routes>
+        </div>
+      </div>
     </BrowserRouter>
   );
 }
