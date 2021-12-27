@@ -6,7 +6,7 @@ import "./App.css";
 import Header from "./components/common/Header";
 import Feed from "./pages/Feed";
 import Community from "./pages/Community";
-import UserPage from "./pages/UserPage";
+import Wallet from "./pages/Wallet";
 import PickMe from "./pages/PickMe";
 import Recommend from "./pages/Recommend";
 
@@ -18,7 +18,7 @@ function App() {
         <Route exact path="/" element={<Feed />} />
         <Route path="community" element={<Community />} />
         <Route path="pick-me" element={<PickMe />} />
-        <Route path="user/wallet" element={<UserPage />} />
+        <Route path="user/wallet" element={<Wallet />} />
         <Route path="user/recommend" element={<Recommend />} />
       </Routes>
     </BrowserRouter>

@@ -1,7 +1,7 @@
 import React from "react";
 
-const UserPage = () => {
+const Wallet = () => {
   return <h1> Wallet </h1>;
 };
 
-export default UserPage;
+export default Wallet;
