@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import DoughnutChart from "../components/feed/DoughnutChart";
+import { Link } from "react-router-dom";
 import dummy from "../components/feed/data.json";
 
 const GridContainer = styled.div`
@@ -9,10 +10,18 @@ const GridContainer = styled.div`
   place-items: center;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
+
+  a {
+    color: black;
+  }
 `;
 
 const CardContainer = styled.div`
   padding: 10px;
+
+  a {
+    color: black;
+  }
 `;
 
 const Card = styled.div`
@@ -62,45 +71,15 @@ const Feed = () => {
     <>
       <GridContainer>
         {data.slice(0, 4).map(({ id, chartData, like, nickname, income }) => (
-          <Card key={id}>
-            <div>
-              <span className="like">${like}</span>
-              <DoughnutChart
-                data={chartData}
-                style={{
-                  width: 170,
-                  height: 170,
-                }}
-                title={
-                  <>
-                    <div className="nickname">{nickname}</div>
-                    <div className="income">{income}/月</div>
-                  </>
-                }
-              />
-            </div>
-          </Card>
-        ))}
-      </GridContainer>
-      <CardContainer>
-        {data
-          .slice(4, 6)
-          .map(({ id, chartData, like, nickname, income, priceEarnings }) => (
-            <Card
-              key={id}
-              fullWidth={priceEarnings}
-              style={{
-                display: "flex",
-                marginBottom: "10px",
-              }}
-            >
+          <Link to={`post/${id}`}>
+            <Card key={id}>
               <div>
                 <span className="like">${like}</span>
                 <DoughnutChart
                   data={chartData}
                   style={{
-                    width: 142,
-                    height: 142,
+                    width: 170,
+                    height: 170,
                   }}
                   title={
                     <>
@@ -110,23 +89,57 @@ const Feed = () => {
                   }
                 />
               </div>
-              {priceEarnings && (
-                <div className="price-earnings">
-                  <div>
-                    수익률
-                    <div
-                      style={{
-                        paddingTop: "5px",
-                        color: priceEarnings > 0 ? "#FF0514" : "#4605FF",
-                      }}
-                    >
-                      {priceEarnings > 0 && "+"}
-                      {priceEarnings}%
+            </Card>
+          </Link>
+        ))}
+      </GridContainer>
+      <CardContainer>
+        {data
+          .slice(4, 6)
+          .map(({ id, chartData, like, nickname, income, priceEarnings }) => (
+            <Link to={`post/${id}`}>
+              <Card
+                key={id}
+                fullWidth={priceEarnings}
+                style={{
+                  display: "flex",
+                  marginBottom: "10px",
+                }}
+              >
+                <div>
+                  <span className="like">${like}</span>
+                  <DoughnutChart
+                    data={chartData}
+                    style={{
+                      width: 142,
+                      height: 142,
+                    }}
+                    title={
+                      <>
+                        <div className="nickname">{nickname}</div>
+                        <div className="income">{income}/月</div>
+                      </>
+                    }
+                  />
+                </div>
+                {priceEarnings && (
+                  <div className="price-earnings">
+                    <div>
+                      수익률
+                      <div
+                        style={{
+                          paddingTop: "5px",
+                          color: priceEarnings > 0 ? "#FF0514" : "#4605FF",
+                        }}
+                      >
+                        {priceEarnings > 0 && "+"}
+                        {priceEarnings}%
+                      </div>
                     </div>
                   </div>
-                </div>
-              )}
-            </Card>
+                )}
+              </Card>
+            </Link>
           ))}
       </CardContainer>
     </>

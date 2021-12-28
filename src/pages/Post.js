@@ -54,6 +54,7 @@ const Post = () => {
   const { data } = dummy;
   const { id } = useParams();
   const { title, nickname, like, contents } = data[Number(id)];
+
   return (
     <PostWrapper>
       <h2> {title} </h2>
