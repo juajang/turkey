@@ -10,13 +10,33 @@ export const init = () => initialState;
 export function reducer(state, action) {
   switch (action.type) {
     case "income":
-      return { income: state.income + action.income };
+      return {
+        income: state.income + action.income,
+        consume: state.consume,
+        invest: state.invest,
+        deposit: state.deposit,
+      };
     case "consume":
-      return { consume: state.consume + action.consume };
+      return {
+        income: state.income,
+        consume: state.consume + action.consume,
+        invest: state.invest,
+        deposit: state.deposit,
+      };
     case "invest":
-      return { invest: state.invest + action.invest };
+      return {
+        income: state.income,
+        consume: state.consume,
+        invest: state.invest + action.invest,
+        deposit: state.deposit,
+      };
     case "deposit":
-      return { deposit: state.deposit + action.deposit };
+      return {
+        income: state.income,
+        consume: state.consume,
+        invest: state.invest,
+        deposit: state.deposit + action.deposit
+      };
     default:
       throw new Error();
   }
