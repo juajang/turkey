@@ -61,8 +61,8 @@ const Feed = () => {
   return (
     <>
       <GridContainer>
-        {data.slice(0, 4).map(({ chartData, like, nickname, income }) => (
-          <Card>
+        {data.slice(0, 4).map(({ id, chartData, like, nickname, income }) => (
+          <Card key={id}>
             <div>
               <span className="like">${like}</span>
               <DoughnutChart
@@ -85,8 +85,9 @@ const Feed = () => {
       <CardContainer>
         {data
           .slice(4, 6)
-          .map(({ chartData, like, nickname, income, priceEarnings }) => (
+          .map(({ id, chartData, like, nickname, income, priceEarnings }) => (
             <Card
+              key={id}
               fullWidth={priceEarnings}
               style={{
                 display: "flex",
