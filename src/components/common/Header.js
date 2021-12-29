@@ -98,10 +98,10 @@ const Header = () => {
             <img alt="character_sol" src="/images/character_sol.png" />
           </div>
           <div className="category">HOME</div>
-          <Link to="/feed">
+          <Link to="/">
             <div className="menu">FEED</div>
           </Link>
-          <Link to="/">
+          <Link to="/post">
             <div className="menu">COMMUNITY</div>
           </Link>
           <div className="category">MY PAGE</div>

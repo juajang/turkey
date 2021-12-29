@@ -11,7 +11,7 @@ const PostContainer = styled.div`
 const PostCard = styled.div`
   display: grid;
   color: black;
-  padding: 5px 0;
+  padding: 7px 0;
   grid-template-columns: 5fr 2fr 1fr;
 
   .nickname {
@@ -30,7 +30,7 @@ const PostList = () => {
   return (
     <PostContainer>
       {data.map(({ id, nickname, title, like }) => (
-        <Link key={id} to={`post/${id}`}>
+        <Link key={id} to={`/post/${id}`}>
           <PostCard>
             <h3>{title}</h3>
             <span className="nickname"> {nickname} </span>
