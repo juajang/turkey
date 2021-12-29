@@ -226,7 +226,6 @@ const Wallet = ({ state, dispatch }) => {
             ))
           }
         </Panel>
-        {/* <Divider style={{marginLeft:"10px", marginRight:"10px"}}/> */}
         <Panel header={<Invest />} extra={<PlusCircleOutlined
           style={{ fontSize: "20px", float: "right" }}
           onClick={(event) => {
@@ -243,7 +242,6 @@ const Wallet = ({ state, dispatch }) => {
             ))
           }
         </Panel>
-        {/* <Divider style={{marginLeft:"10px", marginRight:"10px"}}/> */}
         <Panel header={<Deposit />} extra={<PlusCircleOutlined
           style={{ fontSize: "20px", float: "right" }}
           onClick={(event) => {
