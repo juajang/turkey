@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
-import { Tag, Divider, Button, Collapse, Row, Col, Modal, Form, Input } from 'antd';
+import { Tag, Divider, Button, Collapse, Row, Col, Modal, Form, Input, Progress } from 'antd';
 import { DollarOutlined, DollarCircleFilled, PlusCircleOutlined, HeartFilled, EditOutlined } from '@ant-design/icons';
 import DoughnutChart from "../components/feed/DoughnutChart";
 
@@ -185,9 +185,7 @@ const Wallet = ({ state, dispatch }) => {
       >
         SOL에서 불러오기
       </Button>
-      
-      
-
+    
       <Collapse ghost style={{ postion: "relative", marginTop: "20px" }}>
         <Panel
           header={<Income />}
@@ -205,7 +203,7 @@ const Wallet = ({ state, dispatch }) => {
                 <Col span={14}>{priceToString(price)}</Col>
               </Row>
             ))
-          }
+            }
         </Panel>
         <Divider style={{marginLeft:"10px", marginRight:"10px"}}/>
         <Panel
@@ -225,6 +223,9 @@ const Wallet = ({ state, dispatch }) => {
               </Row>
             ))
           }
+          <div style={{width:"300px", marginTop:"10px"}}>
+            <Progress percent={Math.floor(100*consume/(consume+invest+deposit))} style={{marginLeft:"20px", marginRight:"50px"}} strokeColor="#F96666" />
+          </div>
         </Panel>
         <Panel header={<Invest />} extra={<PlusCircleOutlined
           style={{ fontSize: "20px", float: "right" }}
@@ -241,6 +242,9 @@ const Wallet = ({ state, dispatch }) => {
               </Row>
             ))
           }
+          <div style={{width:"300px", marginTop:"10px"}}>
+            <Progress percent={Math.floor(100*invest/(consume+invest+deposit))} style={{marginLeft:"20px", marginRight:"50px"}} strokeColor="#43D0EA" />
+          </div>
         </Panel>
         <Panel header={<Deposit />} extra={<PlusCircleOutlined
           style={{ fontSize: "20px", float: "right" }}
@@ -257,6 +261,9 @@ const Wallet = ({ state, dispatch }) => {
               </Row>
             ))
           }
+          <div style={{width:"300px", marginTop:"10px"}}>
+            <Progress percent={Math.floor(100*deposit/(consume+invest+deposit))} style={{marginLeft:"20px", marginRight:"50px"}} strokeColor="#FEDD75" />
+          </div>
         </Panel>
       </Collapse>
 
