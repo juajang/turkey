@@ -82,8 +82,8 @@ const Feed = () => {
         {data
           .slice(0, 4)
           .map(({ id, chartData, like, nickname, income }, index) => (
-            <Link to={`post/${id}`}>
-              <Card key={id} bgColor={bgColors[index]}>
+            <Link key={id} to={`/post/${id}`}>
+              <Card bgColor={bgColors[index]}>
                 <div>
                   <span className="like">${like}</span>
                   <DoughnutChart
@@ -112,7 +112,7 @@ const Feed = () => {
               { id, chartData, like, nickname, income, priceEarnings },
               index
             ) => (
-              <Link to={`post/${id}`}>
+              <Link key={id} to={`/post/${id}`}>
                 <Card
                   key={id}
                   fullWidth={priceEarnings}
