@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { IoIosMenu } from "react-icons/io";
 import { Drawer } from "antd";
 import { Link, useLocation } from "react-router-dom";
 
@@ -15,13 +15,16 @@ const HeaderWrapper = styled.header`
 `;
 
 const MenuButton = styled.button`
-  background: transparent;
   outline: none;
   border: none;
   cursor: pointer;
   position: absolute;
   top: 5px;
-  left: 5px;
+  left: 8px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #185dce;
 `;
 
 const DrawerContents = styled.div`
@@ -72,7 +75,15 @@ const Header = () => {
       <HeaderWrapper>
         <h1>{title || "FEED"}</h1>
         <MenuButton>
-          <GiHamburgerMenu onClick={handleClick} size={50} />
+          <IoIosMenu
+            onClick={handleClick}
+            size={25}
+            color="white"
+            style={{
+              position: "relative",
+              top: 2,
+            }}
+          />
         </MenuButton>
       </HeaderWrapper>
       <Drawer

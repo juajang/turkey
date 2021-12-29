@@ -14,6 +14,7 @@ const PostWrapper = styled.div`
   h2 {
     font-size: 22px;
     font-weight: bold;
+    padding: 5px 0;
     color: #1e2395;
     display: flex;
     justify-content: center;
