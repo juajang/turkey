@@ -43,13 +43,11 @@ export function reducer(state, action) {
     case "invest":
       return {
         ...state,
-        income: state.income + action.invest,
         invest: state.invest + action.invest
       };
     case "deposit":
       return {
         ...state,
-        income: state.income + action.deposit,
         deposit: state.deposit + action.deposit
       };
     case "add_income":
@@ -61,21 +59,18 @@ export function reducer(state, action) {
     case "add_consume":
       return {
         ...state,
-        income: state.income + action.price,
         consume: state.consume + action.price,
         consumeList: [...state.consumeList, {"title": action.title, "price": action.price}],
       };
     case "add_invest":
       return {
         ...state,
-        income: state.income + action.price,
         invest: state.invest + action.price,
         investList: [...state.investList, { "title": action.title, "price": action.price }],
       };
     case "add_deposit":
       return {
         ...state,
-        income: state.income + action.price,
         deposit: state.deposit + action.price,
         depositList: [...state.depositList, { "title": action.title, "price": action.price }],
       };
