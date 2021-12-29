@@ -40,6 +40,18 @@ const DrawerContents = styled.div`
   .menu {
     padding: 5px 1em 0 1em;
   }
+
+  .img-wrapper {
+    padding: 1rem 0;
+    display: grid;
+    place-items: center;
+  }
+
+  img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+  }
 `;
 
 const Header = () => {
@@ -64,18 +76,21 @@ const Header = () => {
         </MenuButton>
       </HeaderWrapper>
       <Drawer
-        size="default"
+        width="210px"
         placement="left"
         onClose={handleClose}
         visible={menuVisible}
         onClick={handleClose}
       >
         <DrawerContents>
+          <div className="img-wrapper">
+            <img alt="character_sol" src="/images/character_sol.png" />
+          </div>
           <div className="category">HOME</div>
-          <Link to="/">
+          <Link to="/feed">
             <div className="menu">FEED</div>
           </Link>
-          <Link to="/community">
+          <Link to="/">
             <div className="menu">COMMUNITY</div>
           </Link>
           <div className="category">MY PAGE</div>

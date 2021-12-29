@@ -21,8 +21,8 @@ function App() {
         <div className="app-contents">
           <Header />
           <Routes>
-            <Route exact path="/" element={<Feed />} />
-            <Route path="community" element={<Community />} />
+            <Route exact path="/" element={<Community />} />
+            <Route path="/feed" element={<Feed />} />
             <Route path="/post/:id" element={<Post />} />
             <Route path="pick-me" element={<PickMe />} />
             <Route

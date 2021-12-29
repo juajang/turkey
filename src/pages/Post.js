@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import dummy from "../components/feed/data.json";
+import dummy from "../components/common/data.json";
 import styled from "styled-components";
 import { BsSuitHeartFill } from "react-icons/bs";
 import { Input } from "antd";

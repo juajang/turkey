@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import DoughnutChart from "../components/feed/DoughnutChart";
 import { Link } from "react-router-dom";
-import dummy from "../components/feed/data.json";
+import dummy from "../components/common/data.json";
 
 const GridContainer = styled.div`
   padding: 0 10px;
