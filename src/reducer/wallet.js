@@ -3,6 +3,11 @@ export const initialState = {
   consume: 1500000, // 지출
   invest: 3000000, // 투자
   deposit: 4500000, // 저축
+  incomeList: [
+    {"title": "월급", "price": 5000000},
+    {"title": "용돈", "price": 3000000},
+    {"title": "보너스", "price": 1000000},
+  ], // 수입 세부
   consumeList: [
     {"title": "월세", "price": 800000},
     {"title": "식비", "price": 500000},
@@ -27,7 +32,7 @@ export function reducer(state, action) {
     case "income":
       return {
         ...state,
-        income: state.income + action.income
+        income: action.income
       };
     case "consume":
       return {
@@ -46,6 +51,11 @@ export function reducer(state, action) {
         ...state,
         income: state.income + action.deposit,
         deposit: state.deposit + action.deposit
+      };
+    case "add_income":
+      return {
+        ...state,
+        incomeList: [...state.incomeList, { "title": action.title, "price": action.price }],
       };
     case "add_consume":
       return {

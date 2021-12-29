@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import styled from "styled-components";
 import { Tag, Divider, Button, Collapse, Row, Col, Modal, Form, Input } from 'antd';
-import { DollarOutlined, PlusCircleOutlined } from '@ant-design/icons';
+import { DollarOutlined, DollarCircleFilled, PlusCircleOutlined, HeartFilled, EditOutlined } from '@ant-design/icons';
 import DoughnutChart from "../components/feed/DoughnutChart";
 
 const Card = styled.div`
@@ -47,7 +47,7 @@ const Card = styled.div`
 const HeaderWrapper = styled.header`
   width: 100%;
   position: relative;
-  height: 80px;
+  height: 50px;
   font-size: 25px;
   font-weight: 550;
   display: grid;
@@ -59,21 +59,37 @@ function priceToString(price) {
 }
 
 const Wallet = ({ state, dispatch }) => {
-  console.log(state);
-  console.log(state.consumeList);
+  const [isIncVisible, setIsIncVisible] = useState(false);
+  const [isIncomeVisible, setIsIncomeVisible] = useState(false);
   const [isConsumeVisible, setIsConsumeVisible] = useState(false);
   const [isInvestVisible, setIsInvestVisible] = useState(false);
   const [isDepositVisible, setIsDepositVisible] = useState(false);
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0);
-  const { income, consume, invest, deposit, consumeList, investList, depositList } = state;
+  const { income, consume, invest, deposit, consumeList, investList, depositList, incomeList } = state;
   const { Panel } = Collapse;
+
+  const incOk = () => {
+    setIsIncVisible(false);
+    dispatch({ type: "income", income: parseInt(price)});
+  };
+
+  const incCancel = () => {
+    setIsIncVisible(false);
+  };
+
+  const incomeOk = () => {
+    setIsIncomeVisible(false);
+    dispatch({ type: "add_income", title: title, price: parseInt(price)});
+  };
+
+  const incomeCancel = () => {
+    setIsIncomeVisible(false);
+  };
 
   const consumeOk = () => {
     setIsConsumeVisible(false);
-    console.log("이름", title);
-    console.log("가격", price);
-    dispatch({ type: "add_consume", title: title, price: parseInt(price)})
+    dispatch({ type: "add_consume", title: title, price: parseInt(price)});
   };
 
   const consumeCancel = () => {
@@ -82,9 +98,7 @@ const Wallet = ({ state, dispatch }) => {
 
   const investOk = () => {
     setIsInvestVisible(false);
-    console.log("이름", title);
-    console.log("가격", price);
-    dispatch({ type: "add_invest", title: title, price: parseInt(price)})
+    dispatch({ type: "add_invest", title: title, price: parseInt(price)});
   };
 
   const investCancel = () => {
@@ -93,19 +107,29 @@ const Wallet = ({ state, dispatch }) => {
 
   const depositOk = () => {
     setIsDepositVisible(false);
-    console.log("이름", title);
-    console.log("가격", price);
-    dispatch({ type: "add_deposit", title: title, price: parseInt(price)})
+    dispatch({ type: "add_deposit", title: title, price: parseInt(price)});
   };
 
   const depositCancel = () => {
     setIsDepositVisible(false);
   };
 
+  const Income = () => {
+    return(
+      <>
+        <DollarCircleFilled style={{fontSize:"20px", marginRight:"10px"}}/>
+        <div style={{marginRight: "50px", fontSize:"15px", fontWeight:"bold"}}> 수입</div>
+        <div>{priceToString(income)}</div>
+        <EditOutlined style={{fontSize:"15px", marginLeft:"10px"}} onClick={() => {setIsIncVisible(true)}}/>
+      </>
+    )
+  }
+
   const Consume = () => {
     return(
       <>
-        <div style={{marginRight: "50px"}}>지출</div>
+        <HeartFilled style={{color: "#F96666", fontSize:"20px", marginRight:"10px"}}/>
+        <div style={{marginRight: "50px", fontSize:"15px", fontWeight:"bold"}}> 지출</div>
         <div>{priceToString(consume)}</div>
       </>
     )
@@ -114,7 +138,8 @@ const Wallet = ({ state, dispatch }) => {
   const Invest = () => {
     return(
       <>
-        <div style={{marginRight: "50px"}}>투자</div>
+        <HeartFilled style={{color: "#43D0EA", fontSize:"20px", marginRight:"10px"}}/>
+        <div style={{marginRight: "50px", fontSize:"15px", fontWeight:"bold"}}>투자</div>
         <div>{priceToString(invest)}</div>
       </>
     )
@@ -123,7 +148,8 @@ const Wallet = ({ state, dispatch }) => {
   const Deposit = () => {
     return(
       <>
-        <div style={{marginRight: "50px"}}>저축</div>
+        <HeartFilled style={{color: "#FEDD75", fontSize:"20px", marginRight:"10px"}}/>
+        <div style={{marginRight: "50px", fontSize:"15px", fontWeight:"bold"}}>저축</div>
         <div>{priceToString(deposit)}</div>
       </>
     )
@@ -139,13 +165,13 @@ const Wallet = ({ state, dispatch }) => {
         <DollarOutlined style={{color: "#FBB117", marginRight: "5px"}} />20
       </span>
 
-      <Card>
+      <Card style={{margin:"auto", marginTop:"30px"}}>
         <div>
           <DoughnutChart
             data={[consume, invest, deposit]}
             style={{
-              width: 20,
-              height: 20,
+              width: 40,
+              height: 40,
             }}
             title={
               <>
@@ -156,9 +182,43 @@ const Wallet = ({ state, dispatch }) => {
         </div>
       </Card>
       
-      <Button shape="round" style={{position: "relative", marginTop: "20px"}}>SOL에서 불러오기</Button>
+      <Button
+        shape="round"
+        size="small"
+        style={{
+          position: "relative",
+          marginTop: "20px",
+          marginLeft: "20px",
+          backgroundColor: "rgba(128, 232, 255, 0.52)",
+          border:0,
+          outline:0
+        }}
+      >
+        SOL에서 불러오기
+      </Button>
+      
+      
 
       <Collapse ghost style={{ postion: "relative", marginTop: "20px" }}>
+        <Panel
+          header={<Income />}
+          extra={<PlusCircleOutlined
+            style={{ fontSize: "20px", float: "right" }}
+            onClick={(event) => {
+              event.stopPropagation();
+              setIsIncomeVisible(true);
+            }} />} key="200">
+          {incomeList && incomeList
+            .map(({ title, price }) => (
+              <Row>
+                <Col span={4}></Col>
+                <Col span={6}>{"+ ", title}</Col>
+                <Col span={14}>{priceToString(price)}</Col>
+              </Row>
+            ))
+          }
+        </Panel>
+        <Divider style={{marginLeft:"10px", marginRight:"10px"}}/>
         <Panel
           header={<Consume />}
           extra={<PlusCircleOutlined
@@ -170,14 +230,14 @@ const Wallet = ({ state, dispatch }) => {
           {consumeList && consumeList
             .map(({ title, price }) => (
               <Row>
-                <Col span={1}></Col>
-                <Col span={4}>{"+ ", title}</Col>
-                <Col span={16}>{priceToString(price)}</Col>
+                <Col span={4}></Col>
+                <Col span={6}>{"+ ", title}</Col>
+                <Col span={14}>{priceToString(price)}</Col>
               </Row>
             ))
           }
         </Panel>
-        <Divider />
+        {/* <Divider style={{marginLeft:"10px", marginRight:"10px"}}/> */}
         <Panel header={<Invest />} extra={<PlusCircleOutlined
           style={{ fontSize: "20px", float: "right" }}
           onClick={(event) => {
@@ -187,14 +247,14 @@ const Wallet = ({ state, dispatch }) => {
           {investList && investList
             .map(({ title, price }) => (
               <Row>
-                <Col span={1}></Col>
-                <Col span={4}>{"+ ", title}</Col>
-                <Col span={16}>{priceToString(price)}</Col>
+                <Col span={4}></Col>
+                <Col span={6}>{"+ ", title}</Col>
+                <Col span={14}>{priceToString(price)}</Col>
               </Row>
             ))
           }
         </Panel>
-        <Divider />
+        {/* <Divider style={{marginLeft:"10px", marginRight:"10px"}}/> */}
         <Panel header={<Deposit />} extra={<PlusCircleOutlined
           style={{ fontSize: "20px", float: "right" }}
           onClick={(event) => {
@@ -204,15 +264,49 @@ const Wallet = ({ state, dispatch }) => {
           {depositList && depositList
             .map(({ title, price }) => (
               <Row>
-                <Col span={1}></Col>
-                <Col span={4}>{"+ ", title}</Col>
-                <Col span={16}>{priceToString(price)}</Col>
+                <Col span={4}></Col>
+                <Col span={6}>{"+ ", title}</Col>
+                <Col span={14}>{priceToString(price)}</Col>
               </Row>
             ))
           }
         </Panel>
       </Collapse>
       
+      <Modal title="총 수입 변경" visible={isIncVisible} onOk={incOk} onCancel={incCancel}>
+        <Form>
+          <Form.Item label="총 수입 가격">
+            <Input
+              placeholder="가격을 입력해주세요"
+              onChange={(event) => {
+                setPrice(event.currentTarget.value);
+              }}  
+            />
+          </Form.Item>
+        </Form>
+      </Modal>
+
+      <Modal title="수입 내역 추가" visible={isIncomeVisible} onOk={incomeOk} onCancel={incomeCancel}>
+        <Form>
+          <Form.Item label="수입 이름">
+            <Input
+              placeholder="이름을 입력해주세요"
+              onChange={(event) => {
+                setTitle(event.currentTarget.value);
+              }}
+            />
+          </Form.Item>
+          <Form.Item label="가격">
+            <Input
+              placeholder="가격을 입력해주세요"
+              onChange={(event) => {
+                setPrice(event.currentTarget.value);
+              }}  
+            />
+          </Form.Item>
+        </Form>
+      </Modal>
+
       <Modal title="지출 내역 추가" visible={isConsumeVisible} onOk={consumeOk} onCancel={consumeCancel}>
         <Form>
           <Form.Item label="지출 이름">
