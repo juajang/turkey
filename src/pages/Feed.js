@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import DoughnutChart from "../components/feed/DoughnutChart";
+import { Link } from "react-router-dom";
 import dummy from "../components/feed/data.json";
 
 const GridContainer = styled.div`
@@ -9,10 +10,18 @@ const GridContainer = styled.div`
   place-items: center;
   grid-gap: 10px;
   grid-template-columns: 1fr 1fr;
+
+  a {
+    color: black;
+  }
 `;
 
 const CardContainer = styled.div`
   padding: 10px;
+
+  a {
+    color: black;
+  }
 `;
 
 const Card = styled.div`
@@ -20,6 +29,7 @@ const Card = styled.div`
   border-radius: 15px;
   position: relative;
   width: ${(props) => (props.fullWidth ? "100%" : "174px")};
+  background-color: ${(props) => props.bgColor};
   height: 170px;
   border: 1px solid #f0f0f0;
   font-size: 12px;
@@ -47,8 +57,8 @@ const Card = styled.div`
   }
 
   .price-earnings {
-    font-size: 24px;
-    font-weight: 550;
+    font-size: 28px;
+    font-weight: 650;
     display: grid;
     place-items: center;
     width: 100%;
@@ -57,76 +67,97 @@ const Card = styled.div`
 
 const Feed = () => {
   const { data } = dummy;
+  const bgColors = [
+    "#FFE4E4",
+    "#5ED8FF20",
+    "#74FF5E20",
+    "#FFBE5E20",
+    "#F5FE8E20",
+    "#FE8EEC20",
+  ];
 
   return (
     <>
       <GridContainer>
-        {data.slice(0, 4).map(({ chartData, like, nickname, income }) => (
-          <Card>
-            <div>
-              <span className="like">${like}</span>
-              <DoughnutChart
-                data={chartData}
-                style={{
-                  width: 170,
-                  height: 170,
-                }}
-                title={
-                  <>
-                    <div className="nickname">{nickname}</div>
-                    <div className="income">{income}/月</div>
-                  </>
-                }
-              />
-            </div>
-          </Card>
-        ))}
+        {data
+          .slice(0, 4)
+          .map(({ id, chartData, like, nickname, income }, index) => (
+            <Link to={`post/${id}`}>
+              <Card key={id} bgColor={bgColors[index]}>
+                <div>
+                  <span className="like">${like}</span>
+                  <DoughnutChart
+                    data={chartData}
+                    style={{
+                      width: 170,
+                      height: 170,
+                    }}
+                    title={
+                      <>
+                        <div className="nickname">{nickname}</div>
+                        <div className="income">{income}/月</div>
+                      </>
+                    }
+                  />
+                </div>
+              </Card>
+            </Link>
+          ))}
       </GridContainer>
       <CardContainer>
         {data
           .slice(4, 6)
-          .map(({ chartData, like, nickname, income, priceEarnings }) => (
-            <Card
-              fullWidth={priceEarnings}
-              style={{
-                display: "flex",
-                marginBottom: "10px",
-              }}
-            >
-              <div>
-                <span className="like">${like}</span>
-                <DoughnutChart
-                  data={chartData}
+          .map(
+            (
+              { id, chartData, like, nickname, income, priceEarnings },
+              index
+            ) => (
+              <Link to={`post/${id}`}>
+                <Card
+                  key={id}
+                  fullWidth={priceEarnings}
+                  bgColor={bgColors[index + 4]}
                   style={{
-                    width: 142,
-                    height: 142,
+                    display: "flex",
+                    marginBottom: "10px",
                   }}
-                  title={
-                    <>
-                      <div className="nickname">{nickname}</div>
-                      <div className="income">{income}/月</div>
-                    </>
-                  }
-                />
-              </div>
-              {priceEarnings && (
-                <div className="price-earnings">
+                >
                   <div>
-                    수익률
-                    <div
+                    <span className="like">${like}</span>
+                    <DoughnutChart
+                      data={chartData}
                       style={{
-                        paddingTop: "5px",
-                        color: priceEarnings > 0 ? "#FF0514" : "#4605FF",
+                        width: 142,
+                        height: 142,
                       }}
-                    >
-                      {priceEarnings > 0 && "+"}
-                      {priceEarnings}%
-                    </div>
+                      title={
+                        <>
+                          <div className="nickname">{nickname}</div>
+                          <div className="income">{income}/月</div>
+                        </>
+                      }
+                    />
                   </div>
-                </div>
-              )}
-            </Card>
-          ))}
+                  {priceEarnings && (
+                    <div className="price-earnings">
+                      <div>
+                        수익률
+                        <div
+                          style={{
+                            paddingTop: "7px",
+                            color: priceEarnings > 0 ? "#FF0514" : "#4605FF",
+                          }}
+                        >
+                          {priceEarnings > 0 && "+"}
+                          {priceEarnings}%
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </Card>
+              </Link>
+            )
+          )}
       </CardContainer>
     </>
   );

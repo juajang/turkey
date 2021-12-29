@@ -9,6 +9,7 @@ import Community from "./pages/Community";
 import Wallet from "./pages/Wallet";
 import PickMe from "./pages/PickMe";
 import Recommend from "./pages/Recommend";
+import Post from "./pages/Post";
 import { initialState, reducer, init } from "./reducer/wallet";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Routes>
             <Route exact path="/" element={<Feed />} />
             <Route path="community" element={<Community />} />
+            <Route path="/post/:id" element={<Post />} />
             <Route path="pick-me" element={<PickMe />} />
             <Route
               path="wallet"
