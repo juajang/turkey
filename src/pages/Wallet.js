@@ -59,7 +59,6 @@ function priceToString(price) {
 }
 
 const Wallet = ({ state, dispatch }) => {
-  const [isIncVisible, setIsIncVisible] = useState(false);
   const [isIncomeVisible, setIsIncomeVisible] = useState(false);
   const [isConsumeVisible, setIsConsumeVisible] = useState(false);
   const [isInvestVisible, setIsInvestVisible] = useState(false);
@@ -68,15 +67,6 @@ const Wallet = ({ state, dispatch }) => {
   const [price, setPrice] = useState(0);
   const { income, consume, invest, deposit, consumeList, investList, depositList, incomeList } = state;
   const { Panel } = Collapse;
-
-  const incOk = () => {
-    setIsIncVisible(false);
-    dispatch({ type: "income", income: parseInt(price)});
-  };
-
-  const incCancel = () => {
-    setIsIncVisible(false);
-  };
 
   const incomeOk = () => {
     setIsIncomeVisible(false);
@@ -120,7 +110,6 @@ const Wallet = ({ state, dispatch }) => {
         <DollarCircleFilled style={{fontSize:"20px", marginRight:"10px"}}/>
         <div style={{marginRight: "50px", fontSize:"15px", fontWeight:"bold"}}> 수입</div>
         <div>{priceToString(income)}</div>
-        <EditOutlined style={{fontSize:"15px", marginLeft:"10px"}} onClick={() => {setIsIncVisible(true)}}/>
       </>
     )
   }
@@ -175,7 +164,7 @@ const Wallet = ({ state, dispatch }) => {
             }}
             title={
               <>
-                <div className="income">{priceToString(income)}</div>
+                <div className="income">{priceToString(consume+invest+deposit)}</div>
               </>
             }
           />
@@ -272,19 +261,6 @@ const Wallet = ({ state, dispatch }) => {
           }
         </Panel>
       </Collapse>
-      
-      <Modal title="총 수입 변경" visible={isIncVisible} onOk={incOk} onCancel={incCancel}>
-        <Form>
-          <Form.Item label="총 수입 가격">
-            <Input
-              placeholder="가격을 입력해주세요"
-              onChange={(event) => {
-                setPrice(event.currentTarget.value);
-              }}  
-            />
-          </Form.Item>
-        </Form>
-      </Modal>
 
       <Modal title="수입 내역 추가" visible={isIncomeVisible} onOk={incomeOk} onCancel={incomeCancel}>
         <Form>

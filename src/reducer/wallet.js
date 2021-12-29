@@ -55,6 +55,7 @@ export function reducer(state, action) {
     case "add_income":
       return {
         ...state,
+        income: state.income + action.price,
         incomeList: [...state.incomeList, { "title": action.title, "price": action.price }],
       };
     case "add_consume":
