@@ -3,6 +3,7 @@ import styled from "styled-components";
 import DoughnutChart from "../components/feed/DoughnutChart";
 import { Link } from "react-router-dom";
 import dummy from "../components/common/data.json";
+import ContentCard from "../components/common/ContentCard";
 
 const GridContainer = styled.div`
   padding: 0 10px;
@@ -79,85 +80,23 @@ const Feed = () => {
   return (
     <>
       <GridContainer>
-        {data
-          .slice(0, 4)
-          .map(({ id, chartData, like, nickname, income }, index) => (
-            <Link key={id} to={`/post/${id}`}>
-              <Card bgColor={bgColors[index]}>
-                <div>
-                  <span className="like">${like}</span>
-                  <DoughnutChart
-                    data={chartData}
-                    style={{
-                      width: 170,
-                      height: 170,
-                    }}
-                    title={
-                      <>
-                        <div className="nickname">{nickname}</div>
-                        <div className="income">{income}/月</div>
-                      </>
-                    }
-                  />
-                </div>
-              </Card>
-            </Link>
-          ))}
+        {data.slice(0, 4).map((data, index) => (
+          <ContentCard {...data} index={index} />
+        ))}
       </GridContainer>
       <CardContainer>
-        {data
-          .slice(4, 6)
-          .map(
-            (
-              { id, chartData, like, nickname, income, priceEarnings },
-              index
-            ) => (
-              <Link key={id} to={`/post/${id}`}>
-                <Card
-                  key={id}
-                  fullWidth={priceEarnings}
-                  bgColor={bgColors[index + 4]}
-                  style={{
-                    display: "flex",
-                    marginBottom: "10px",
-                  }}
-                >
-                  <div>
-                    <span className="like">${like}</span>
-                    <DoughnutChart
-                      data={chartData}
-                      style={{
-                        width: 142,
-                        height: 142,
-                      }}
-                      title={
-                        <>
-                          <div className="nickname">{nickname}</div>
-                          <div className="income">{income}/月</div>
-                        </>
-                      }
-                    />
-                  </div>
-                  {priceEarnings && (
-                    <div className="price-earnings">
-                      <div>
-                        수익률
-                        <div
-                          style={{
-                            paddingTop: "7px",
-                            color: priceEarnings > 0 ? "#FF0514" : "#4605FF",
-                          }}
-                        >
-                          {priceEarnings > 0 && "+"}
-                          {priceEarnings}%
-                        </div>
-                      </div>
-                    </div>
-                  )}
-                </Card>
-              </Link>
-            )
-          )}
+        {data.slice(4, 6).map((data, index) => (
+          <ContentCard
+            {...data}
+            key={data.id}
+            index={index}
+            fullWidth={true}
+            style={{
+              display: "flex",
+              marginBottom: "10px",
+            }}
+          />
+        ))}
       </CardContainer>
     </>
   );

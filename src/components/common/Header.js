@@ -7,7 +7,7 @@ import { Link, useLocation } from "react-router-dom";
 const HeaderWrapper = styled.header`
   width: 100%;
   position: relative;
-  height: 80px;
+  height: 60px;
   font-size: 25px;
   font-weight: 550;
   display: grid;
