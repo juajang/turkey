@@ -76,7 +76,6 @@ function priceToString(price) {
 
 const Wallet = ({ state }) => {
   const {
-    income,
     consume,
     invest,
     deposit,
@@ -88,7 +87,7 @@ const Wallet = ({ state }) => {
   const { Panel } = Collapse;
   const { data } = dummy;
   const { id } = useParams();
-  const { nickname, like } = data[Number(id)];
+  const { nickname, like, chartData, income } = data[Number(id)];
 
   const Income = () => {
     return (
@@ -99,7 +98,7 @@ const Wallet = ({ state }) => {
         >
           수입
         </div>
-        <div>{priceToString(income)}</div>
+        <div>{priceToString(income * 10000)}</div>
       </>
     );
   };
@@ -115,7 +114,7 @@ const Wallet = ({ state }) => {
         >
           지출
         </div>
-        <div>{priceToString(consume)}</div>
+        <div>{priceToString(chartData[0])}</div>
       </>
     );
   };
@@ -131,7 +130,7 @@ const Wallet = ({ state }) => {
         >
           투자
         </div>
-        <div>{priceToString(invest)}</div>
+        <div>{priceToString(chartData[1])}</div>
       </>
     );
   };
@@ -147,7 +146,7 @@ const Wallet = ({ state }) => {
         >
           저축
         </div>
-        <div>{priceToString(deposit)}</div>
+        <div>{priceToString(chartData[2])}</div>
       </>
     );
   };
@@ -166,7 +165,7 @@ const Wallet = ({ state }) => {
 
       <Card style={{ margin: "auto", width: 200, height: 200 }}>
         <DoughnutChart
-          data={[consume, invest, deposit]}
+          data={chartData}
           title={
             <>
               <div
