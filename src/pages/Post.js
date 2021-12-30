@@ -32,6 +32,7 @@ const PostWrapper = styled.div`
     font-size: 14px;
     padding: 0.5rem 0.5em 1em 0.5em;
     line-height: 1.3em;
+    white-space: pre-wrap;
   }
 
   .ant-input-group-wrapper {
