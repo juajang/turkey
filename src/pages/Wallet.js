@@ -239,11 +239,10 @@ const Wallet = ({ state, dispatch }) => {
           title={
             <>
               <div
-                className="income"
                 style={{
-                  width: "100px",
+                  width: 120,
                   paddingTop: "12px",
-                  paddingLeft: "16px",
+                  paddingLeft: "40px",
                 }}
               >
                 {priceToString(consume + invest + deposit)}
@@ -394,7 +393,10 @@ const Wallet = ({ state, dispatch }) => {
         onCancel={incomeCancel}
       >
         <Form>
-          <Form.Item label="수입 내역" rules={[{ required: true, message: 'Please input your username!' }]}>
+          <Form.Item
+            label="수입 이름"
+            rules={[{ required: true, message: "Please input your username!" }]}
+          >
             <Input
               placeholder="내역을 입력해주세요"
               value={title}
@@ -403,7 +405,13 @@ const Wallet = ({ state, dispatch }) => {
               }}
             />
           </Form.Item>
-          <Form.Item label="가격" rules={[{ type: "number", message: "Please input number" }, { required: true, message: "Please input your username!" }]}>
+          <Form.Item
+            label="가격"
+            rules={[
+              { type: "number", message: "Please input number" },
+              { required: true, message: "Please input your username!" },
+            ]}
+          >
             <Input
               placeholder="가격을 입력해주세요"
               value={price}
@@ -422,7 +430,10 @@ const Wallet = ({ state, dispatch }) => {
         onCancel={consumeCancel}
       >
         <Form>
-          <Form.Item label="지출 내역" rules={[{ required: true, message: 'Please input your username!' }]}>
+          <Form.Item
+            label="지출 이름"
+            rules={[{ required: true, message: "Please input your username!" }]}
+          >
             <Input
               placeholder="내역을 입력해주세요"
               value={title}
@@ -431,7 +442,13 @@ const Wallet = ({ state, dispatch }) => {
               }}
             />
           </Form.Item>
-          <Form.Item label="가격" rules={[{ type: "number", message: "Please input number" }, { required: true, message: 'Please input your username!' }]}>
+          <Form.Item
+            label="가격"
+            rules={[
+              { type: "number", message: "Please input number" },
+              { required: true, message: "Please input your username!" },
+            ]}
+          >
             <Input
               placeholder="가격을 입력해주세요"
               value={price}
@@ -450,7 +467,10 @@ const Wallet = ({ state, dispatch }) => {
         onCancel={investCancel}
       >
         <Form>
-          <Form.Item label="투자 내역" rules={[{ required: true, message: 'Please input your username!' }]}>
+          <Form.Item
+            label="투자 이름"
+            rules={[{ required: true, message: "Please input your username!" }]}
+          >
             <Input
               placeholder="내역을 입력해주세요"
               value={title}
@@ -459,7 +479,13 @@ const Wallet = ({ state, dispatch }) => {
               }}
             />
           </Form.Item>
-          <Form.Item label="가격" rules={[{ type: "number", message: "Please input number" }, { required: true, message: 'Please input your username!' }]}>
+          <Form.Item
+            label="가격"
+            rules={[
+              { type: "number", message: "Please input number" },
+              { required: true, message: "Please input your username!" },
+            ]}
+          >
             <Input
               placeholder="가격을 입력해주세요"
               value={price}
@@ -478,7 +504,10 @@ const Wallet = ({ state, dispatch }) => {
         onCancel={depositCancel}
       >
         <Form>
-          <Form.Item label="저축 내역" rules={[{ required: true, message: 'Please input your username!' }]}>
+          <Form.Item
+            label="저축 이름"
+            rules={[{ required: true, message: "Please input your username!" }]}
+          >
             <Input
               placeholder="내역을 입력해주세요"
               value={title}
@@ -487,7 +516,17 @@ const Wallet = ({ state, dispatch }) => {
               }}
             />
           </Form.Item>
-          <Form.Item label="가격" rules={[{ type: "number", message: "Please input number" }, { type: 'number', required: true, message: 'Please input your username!' }]}>
+          <Form.Item
+            label="가격"
+            rules={[
+              { type: "number", message: "Please input number" },
+              {
+                type: "number",
+                required: true,
+                message: "Please input your username!",
+              },
+            ]}
+          >
             <Input
               placeholder="가격을 입력해주세요"
               value={price}

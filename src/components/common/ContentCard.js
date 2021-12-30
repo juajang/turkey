@@ -54,6 +54,7 @@ const ContentCard = ({
   priceEarnings,
   fullWidth,
   style,
+  url,
 }) => {
   const bgColors = [
     "#FFE4E4",
@@ -65,7 +66,7 @@ const ContentCard = ({
   ];
 
   return (
-    <Link key={id} to={`/post/${id}`}>
+    <Link key={id} to={url ?? `/post/${id}`}>
       <Card bgColor={bgColors[index]} fullWidth={priceEarnings} style={style}>
         <div>
           <span className="like">${like}</span>

@@ -9,10 +9,10 @@ const ChartWrapper = styled.div`
   position: relative;
   .title-wrapper {
     position: absolute;
-    width: 30%;
+    width: 60px;
     height: 40%;
     top: 30%;
-    left: 35%;
+    left: 40px;
   }
 `;
 
