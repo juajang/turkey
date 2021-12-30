@@ -1,7 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import styled from "styled-components";
-import { Tag, Divider, Button, Collapse, Row, Col, Modal, Form, Input, Progress } from 'antd';
-import { DollarOutlined, DollarCircleFilled, PlusCircleOutlined, HeartFilled, EditOutlined } from '@ant-design/icons';
+import {
+  Tag,
+  Divider,
+  Button,
+  Collapse,
+  Row,
+  Col,
+  Modal,
+  Form,
+  Input,
+  Progress,
+} from "antd";
+import {
+  DollarOutlined,
+  DollarCircleFilled,
+  PlusCircleOutlined,
+  HeartFilled,
+} from "@ant-design/icons";
 import DoughnutChart from "../components/feed/DoughnutChart";
 
 const Card = styled.div`
@@ -55,7 +71,7 @@ const HeaderWrapper = styled.header`
 `;
 
 function priceToString(price) {
-  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') + "원";
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") + "원";
 }
 
 const Wallet = ({ state, dispatch }) => {
@@ -65,7 +81,16 @@ const Wallet = ({ state, dispatch }) => {
   const [isDepositVisible, setIsDepositVisible] = useState(false);
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState(0);
-  const { income, consume, invest, deposit, consumeList, investList, depositList, incomeList } = state;
+  const {
+    income,
+    consume,
+    invest,
+    deposit,
+    consumeList,
+    investList,
+    depositList,
+    incomeList,
+  } = state;
   const { Panel } = Collapse;
 
   const incomeOk = () => {
@@ -121,72 +146,105 @@ const Wallet = ({ state, dispatch }) => {
   };
 
   const Income = () => {
-    return(
+    return (
       <>
-        <DollarCircleFilled style={{fontSize:"20px", marginRight:"10px"}}/>
-        <div style={{marginRight: "50px", fontSize:"15px", fontWeight:"bold"}}> 수입</div>
+        <DollarCircleFilled style={{ fontSize: "20px", marginRight: "10px" }} />
+        <div
+          style={{ marginRight: "50px", fontSize: "15px", fontWeight: "bold" }}
+        >
+          {" "}
+          수입
+        </div>
         <div>{priceToString(income)}</div>
       </>
-    )
-  }
+    );
+  };
 
   const Consume = () => {
-    return(
+    return (
       <>
-        <HeartFilled style={{color: "#F96666", fontSize:"20px", marginRight:"10px"}}/>
-        <div style={{marginRight: "50px", fontSize:"15px", fontWeight:"bold"}}> 지출</div>
+        <HeartFilled
+          style={{ color: "#F96666", fontSize: "20px", marginRight: "10px" }}
+        />
+        <div
+          style={{ marginRight: "50px", fontSize: "15px", fontWeight: "bold" }}
+        >
+          {" "}
+          지출
+        </div>
         <div>{priceToString(consume)}</div>
       </>
-    )
-  }
+    );
+  };
 
   const Invest = () => {
-    return(
+    return (
       <>
-        <HeartFilled style={{color: "#43D0EA", fontSize:"20px", marginRight:"10px"}}/>
-        <div style={{marginRight: "50px", fontSize:"15px", fontWeight:"bold"}}>투자</div>
+        <HeartFilled
+          style={{ color: "#43D0EA", fontSize: "20px", marginRight: "10px" }}
+        />
+        <div
+          style={{ marginRight: "50px", fontSize: "15px", fontWeight: "bold" }}
+        >
+          투자
+        </div>
         <div>{priceToString(invest)}</div>
       </>
-    )
-  }
+    );
+  };
 
   const Deposit = () => {
-    return(
+    return (
       <>
-        <HeartFilled style={{color: "#FEDD75", fontSize:"20px", marginRight:"10px"}}/>
-        <div style={{marginRight: "50px", fontSize:"15px", fontWeight:"bold"}}>저축</div>
+        <HeartFilled
+          style={{ color: "#FEDD75", fontSize: "20px", marginRight: "10px" }}
+        />
+        <div
+          style={{ marginRight: "50px", fontSize: "15px", fontWeight: "bold" }}
+        >
+          저축
+        </div>
         <div>{priceToString(deposit)}</div>
       </>
-    )
-  }
+    );
+  };
 
   return (
-    <>
+    <div style={{ padding: "10px 10px 20px 10px" }}>
       <HeaderWrapper>
         <h1>난진</h1>
       </HeaderWrapper>
-      
-      <span className="like" style={{placeItems: "end", float:"right", marginRight:"80px"}}>
-        <DollarOutlined style={{color: "#FBB117", marginRight: "5px"}} />20
+
+      <span
+        className="like"
+        style={{ placeItems: "end", float: "right", marginRight: "80px" }}
+      >
+        <DollarOutlined style={{ color: "#FBB117", marginRight: "5px" }} />
+        20
       </span>
 
-      <Card style={{margin:"auto", marginTop:"30px"}}>
-        <div>
-          <DoughnutChart
-            data={[consume, invest, deposit]}
-            style={{
-              width: 40,
-              height: 40,
-            }}
-            title={
-              <>
-                <div className="income">{priceToString(consume+invest+deposit)}</div>
-              </>
-            }
-          />
-        </div>
+      <Card
+        style={{ margin: "auto", marginTop: "30px", width: 200, height: 200 }}
+      >
+        <DoughnutChart
+          data={[consume, invest, deposit]}
+          title={
+            <>
+              <div
+                className="income"
+                style={{
+                  width: "100px",
+                  paddingTop: "12px",
+                  paddingLeft: "16px",
+                }}
+              >
+                {priceToString(consume + invest + deposit)}
+              </div>
+            </>
+          }
+        />
       </Card>
-      
+
       <Button
         shape="round"
         size="small"
@@ -195,95 +253,138 @@ const Wallet = ({ state, dispatch }) => {
           marginTop: "20px",
           marginLeft: "20px",
           backgroundColor: "rgba(128, 232, 255, 0.52)",
-          border:0,
-          outline:0
+          border: 0,
+          outline: 0,
         }}
       >
         SOL에서 불러오기
       </Button>
-    
+
       <Collapse ghost style={{ postion: "relative", marginTop: "20px" }}>
         <Panel
           header={<Income />}
-          extra={<PlusCircleOutlined
-            style={{ fontSize: "20px", float: "right" }}
-            onClick={(event) => {
-              event.stopPropagation();
-              setIsIncomeVisible(true);
-            }} />} key="200">
-          {incomeList && incomeList
-            .map(({ title, price }) => (
+          extra={
+            <PlusCircleOutlined
+              style={{ fontSize: "20px", float: "right" }}
+              onClick={(event) => {
+                event.stopPropagation();
+                setIsIncomeVisible(true);
+              }}
+            />
+          }
+          key="200"
+        >
+          {incomeList &&
+            incomeList.map(({ title, price }) => (
               <Row>
                 <Col span={4}></Col>
-                <Col span={6}>{"+ ", title}</Col>
+                <Col span={6}>{("+ ", title)}</Col>
                 <Col span={14}>{priceToString(price)}</Col>
               </Row>
-            ))
-            }
+            ))}
         </Panel>
-        <Divider style={{marginLeft:"10px", marginRight:"10px"}}/>
+        <Divider style={{ marginLeft: "10px", marginRight: "10px" }} />
         <Panel
           header={<Consume />}
-          extra={<PlusCircleOutlined
-            style={{ fontSize: "20px", float: "right" }}
-            onClick={(event) => {
-              event.stopPropagation();
-              setIsConsumeVisible(true);
-            }} />} key="201">
-          {consumeList && consumeList
-            .map(({ title, price }) => (
+          extra={
+            <PlusCircleOutlined
+              style={{ fontSize: "20px", float: "right" }}
+              onClick={(event) => {
+                event.stopPropagation();
+                setIsConsumeVisible(true);
+              }}
+            />
+          }
+          key="201"
+        >
+          {consumeList &&
+            consumeList.map(({ title, price }) => (
               <Row>
                 <Col span={4}></Col>
-                <Col span={6}>{"+ ", title}</Col>
+                <Col span={6}>{("+ ", title)}</Col>
                 <Col span={14}>{priceToString(price)}</Col>
               </Row>
-            ))
-          }
-          <div style={{width:"300px", marginTop:"10px"}}>
-            <Progress percent={Math.floor(100*consume/(consume+invest+deposit))} style={{marginLeft:"20px", marginRight:"50px"}} strokeColor="#F96666" />
+            ))}
+          <div style={{ width: "300px", marginTop: "10px" }}>
+            <Progress
+              percent={Math.floor(
+                (100 * consume) / (consume + invest + deposit)
+              )}
+              style={{ marginLeft: "20px", marginRight: "50px" }}
+              strokeColor="#F96666"
+            />
           </div>
         </Panel>
-        <Panel header={<Invest />} extra={<PlusCircleOutlined
-          style={{ fontSize: "20px", float: "right" }}
-          onClick={(event) => {
-            event.stopPropagation();
-            setIsInvestVisible(true);
-          }} />} key="202">
-          {investList && investList
-            .map(({ title, price }) => (
+        <Panel
+          header={<Invest />}
+          extra={
+            <PlusCircleOutlined
+              style={{ fontSize: "20px", float: "right" }}
+              onClick={(event) => {
+                event.stopPropagation();
+                setIsInvestVisible(true);
+              }}
+            />
+          }
+          key="202"
+        >
+          {investList &&
+            investList.map(({ title, price }) => (
               <Row>
                 <Col span={4}></Col>
-                <Col span={6}>{"+ ", title}</Col>
+                <Col span={6}>{("+ ", title)}</Col>
                 <Col span={14}>{priceToString(price)}</Col>
               </Row>
-            ))
-          }
-          <div style={{width:"300px", marginTop:"10px"}}>
-            <Progress percent={Math.floor(100*invest/(consume+invest+deposit))} style={{marginLeft:"20px", marginRight:"50px"}} strokeColor="#43D0EA" />
+            ))}
+          <div style={{ width: "300px", marginTop: "10px" }}>
+            <Progress
+              percent={Math.floor(
+                (100 * invest) / (consume + invest + deposit)
+              )}
+              style={{ marginLeft: "20px", marginRight: "50px" }}
+              strokeColor="#43D0EA"
+            />
           </div>
         </Panel>
-        <Panel header={<Deposit />} extra={<PlusCircleOutlined
-          style={{ fontSize: "20px", float: "right" }}
-          onClick={(event) => {
-            event.stopPropagation();
-            setIsDepositVisible(true);
-          }} />} key="203">
-          {depositList && depositList
-            .map(({ title, price }) => (
+        <Panel
+          header={<Deposit />}
+          extra={
+            <PlusCircleOutlined
+              style={{ fontSize: "20px", float: "right" }}
+              onClick={(event) => {
+                event.stopPropagation();
+                setIsDepositVisible(true);
+              }}
+            />
+          }
+          key="203"
+        >
+          {depositList &&
+            depositList.map(({ title, price }) => (
               <Row>
                 <Col span={4}></Col>
-                <Col span={6}>{"+ ", title}</Col>
+                <Col span={6}>{("+ ", title)}</Col>
                 <Col span={14}>{priceToString(price)}</Col>
               </Row>
-            ))
-          }
-          <div style={{width:"300px", marginTop:"10px"}}>
-            <Progress percent={Math.floor(100*deposit/(consume+invest+deposit))} style={{marginLeft:"20px", marginRight:"50px"}} strokeColor="#FEDD75" />
+            ))}
+          <div style={{ width: "300px", marginTop: "10px" }}>
+            <Progress
+              percent={Math.floor(
+                (100 * deposit) / (consume + invest + deposit)
+              )}
+              style={{ marginLeft: "20px", marginRight: "50px" }}
+              strokeColor="#FEDD75"
+            />
           </div>
         </Panel>
       </Collapse>
 
-      <Modal title="수입 내역 추가" visible={isIncomeVisible} onOk={incomeOk} onCancel={incomeCancel}>
+      <Modal
+        title="수입 내역 추가"
+        visible={isIncomeVisible}
+        onOk={incomeOk}
+        onCancel={incomeCancel}
+      >
         <Form>
           <Form.Item label="수입 이름" rules={[{required: true, message: 'Please input your username!'}]}>
             <Input
@@ -298,13 +399,18 @@ const Wallet = ({ state, dispatch }) => {
               placeholder="가격을 입력해주세요"
               onChange={(event) => {
                 setPrice(event.currentTarget.value);
-              }}  
+              }}
             />
           </Form.Item>
         </Form>
       </Modal>
 
-      <Modal title="지출 내역 추가" visible={isConsumeVisible} onOk={consumeOk} onCancel={consumeCancel}>
+      <Modal
+        title="지출 내역 추가"
+        visible={isConsumeVisible}
+        onOk={consumeOk}
+        onCancel={consumeCancel}
+      >
         <Form>
           <Form.Item label="지출 이름" rules={[{required: true, message: 'Please input your username!'}]}>
             <Input
@@ -319,13 +425,18 @@ const Wallet = ({ state, dispatch }) => {
               placeholder="가격을 입력해주세요"
               onChange={(event) => {
                 setPrice(event.currentTarget.value);
-              }}  
+              }}
             />
           </Form.Item>
         </Form>
       </Modal>
 
-      <Modal title="투자 내역 추가" visible={isInvestVisible} onOk={investOk} onCancel={investCancel}>
+      <Modal
+        title="투자 내역 추가"
+        visible={isInvestVisible}
+        onOk={investOk}
+        onCancel={investCancel}
+      >
         <Form>
           <Form.Item label="투자 이름" rules={[{required: true, message: 'Please input your username!'}]}>
             <Input
@@ -340,13 +451,18 @@ const Wallet = ({ state, dispatch }) => {
               placeholder="가격을 입력해주세요"
               onChange={(event) => {
                 setPrice(event.currentTarget.value);
-              }}  
+              }}
             />
           </Form.Item>
         </Form>
       </Modal>
 
-      <Modal title="저축 내역 추가" visible={isDepositVisible} onOk={depositOk} onCancel={depositCancel}>
+      <Modal
+        title="저축 내역 추가"
+        visible={isDepositVisible}
+        onOk={depositOk}
+        onCancel={depositCancel}
+      >
         <Form>
           <Form.Item label="저축 이름" rules={[{required: true, message: 'Please input your username!'}]}>
             <Input
@@ -361,7 +477,7 @@ const Wallet = ({ state, dispatch }) => {
               placeholder="가격을 입력해주세요"
               onChange={(event) => {
                 setPrice(event.currentTarget.value);
-              }}  
+              }}
             />
           </Form.Item>
         </Form>
@@ -383,7 +499,7 @@ const Wallet = ({ state, dispatch }) => {
         <Tag color="green">신한 Deep Dream Platinum+</Tag>
         <Tag color="green">배터리주</Tag>
       </div>
-    </>
+    </div>
   );
 };
 
