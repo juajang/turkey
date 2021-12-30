@@ -71,37 +71,53 @@ const Wallet = ({ state, dispatch }) => {
   const incomeOk = () => {
     setIsIncomeVisible(false);
     dispatch({ type: "add_income", title: title, price: parseInt(price)});
+    setTitle("");
+    setPrice(0);
   };
 
   const incomeCancel = () => {
     setIsIncomeVisible(false);
+    setTitle("");
+    setPrice(0);
   };
 
   const consumeOk = () => {
     setIsConsumeVisible(false);
     dispatch({ type: "add_consume", title: title, price: parseInt(price)});
+    setTitle("");
+    setPrice(0);
   };
 
   const consumeCancel = () => {
     setIsConsumeVisible(false);
+    setTitle("");
+    setPrice(0);
   };
 
   const investOk = () => {
     setIsInvestVisible(false);
     dispatch({ type: "add_invest", title: title, price: parseInt(price)});
+    setTitle("");
+    setPrice(0);
   };
 
   const investCancel = () => {
     setIsInvestVisible(false);
+    setTitle("");
+    setPrice(0);
   };
 
   const depositOk = () => {
     setIsDepositVisible(false);
     dispatch({ type: "add_deposit", title: title, price: parseInt(price)});
+    setTitle("");
+    setPrice(0);
   };
 
   const depositCancel = () => {
     setIsDepositVisible(false);
+    setTitle("");
+    setPrice(0);
   };
 
   const Income = () => {
@@ -269,7 +285,7 @@ const Wallet = ({ state, dispatch }) => {
 
       <Modal title="수입 내역 추가" visible={isIncomeVisible} onOk={incomeOk} onCancel={incomeCancel}>
         <Form>
-          <Form.Item label="수입 이름">
+          <Form.Item label="수입 이름" rules={[{required: true, message: 'Please input your username!'}]}>
             <Input
               placeholder="이름을 입력해주세요"
               onChange={(event) => {
@@ -277,7 +293,7 @@ const Wallet = ({ state, dispatch }) => {
               }}
             />
           </Form.Item>
-          <Form.Item label="가격">
+          <Form.Item label="가격" rules={[{type: "number", message: "Please input number"}, {required: true, message: "Please input your username!"}]}>
             <Input
               placeholder="가격을 입력해주세요"
               onChange={(event) => {
@@ -290,7 +306,7 @@ const Wallet = ({ state, dispatch }) => {
 
       <Modal title="지출 내역 추가" visible={isConsumeVisible} onOk={consumeOk} onCancel={consumeCancel}>
         <Form>
-          <Form.Item label="지출 이름">
+          <Form.Item label="지출 이름" rules={[{required: true, message: 'Please input your username!'}]}>
             <Input
               placeholder="이름을 입력해주세요"
               onChange={(event) => {
@@ -298,7 +314,7 @@ const Wallet = ({ state, dispatch }) => {
               }}
             />
           </Form.Item>
-          <Form.Item label="가격">
+          <Form.Item label="가격" rules={[{type: "number", message: "Please input number"}, {required: true, message: 'Please input your username!'}]}>
             <Input
               placeholder="가격을 입력해주세요"
               onChange={(event) => {
@@ -311,7 +327,7 @@ const Wallet = ({ state, dispatch }) => {
 
       <Modal title="투자 내역 추가" visible={isInvestVisible} onOk={investOk} onCancel={investCancel}>
         <Form>
-          <Form.Item label="투자 이름">
+          <Form.Item label="투자 이름" rules={[{required: true, message: 'Please input your username!'}]}>
             <Input
               placeholder="이름을 입력해주세요"
               onChange={(event) => {
@@ -319,7 +335,7 @@ const Wallet = ({ state, dispatch }) => {
               }}
             />
           </Form.Item>
-          <Form.Item label="가격">
+          <Form.Item label="가격" rules={[{type: "number", message: "Please input number"}, {required: true, message: 'Please input your username!'}]}>
             <Input
               placeholder="가격을 입력해주세요"
               onChange={(event) => {
@@ -332,7 +348,7 @@ const Wallet = ({ state, dispatch }) => {
 
       <Modal title="저축 내역 추가" visible={isDepositVisible} onOk={depositOk} onCancel={depositCancel}>
         <Form>
-          <Form.Item label="저축 이름">
+          <Form.Item label="저축 이름" rules={[{required: true, message: 'Please input your username!'}]}>
             <Input
               placeholder="이름을 입력해주세요"
               onChange={(event) => {
@@ -340,7 +356,7 @@ const Wallet = ({ state, dispatch }) => {
               }}
             />
           </Form.Item>
-          <Form.Item label="가격">
+          <Form.Item label="가격" rules={[{type: "number", message: "Please input number"}, {type: 'number', required: true, message: 'Please input your username!'}]}>
             <Input
               placeholder="가격을 입력해주세요"
               onChange={(event) => {
