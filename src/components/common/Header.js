@@ -101,7 +101,7 @@ const Header = () => {
           <Link to="/">
             <div className="menu">FEED</div>
           </Link>
-          <Link to="/post">
+          <Link to="/community">
             <div className="menu">COMMUNITY</div>
           </Link>
           <div className="category">MY PAGE</div>
