@@ -87,7 +87,7 @@ const Header = () => {
         </MenuButton>
       </HeaderWrapper>
       <Drawer
-        width="210px"
+        width="250px"
         placement="left"
         onClose={handleClose}
         visible={menuVisible}
