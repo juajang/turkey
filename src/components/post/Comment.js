@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import dummy from "../common/comments.json";
+import { useParams } from "react-router-dom";
 
 const CommentWrapper = styled.div`
   padding: 7px 10px;
@@ -13,24 +15,21 @@ const CommentWrapper = styled.div`
 `;
 
 const Comment = () => {
+  const { id } = useParams();
+  const data = dummy.data[Number(id)];
+
   return (
     <div
       style={{
         padding: "1rem 0",
       }}
     >
-      <CommentWrapper>
-        <div className="comment-nickname"> 난진 </div>
-        <div> 칠면조에게 ‘밥’을 사다니 ‘아찔’ </div>
-      </CommentWrapper>
-      <CommentWrapper>
-        <div className="comment-nickname"> 영 </div>
-        <div> 대박이다 밥 또 사주실거죠? </div>
-      </CommentWrapper>
-      <CommentWrapper>
-        <div className="comment-nickname"> 캡틴도일 </div>
-        <div> 넹... </div>
-      </CommentWrapper>
+      {data?.comments.map(({ nickname, contents }) => (
+        <CommentWrapper>
+          <div className="comment-nickname"> {nickname} </div>
+          <div> {contents} </div>
+        </CommentWrapper>
+      ))}
     </div>
   );
 };
