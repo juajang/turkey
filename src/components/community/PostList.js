@@ -15,8 +15,9 @@ const PostContainer = styled.div`
 `;
 
 const PostDetail = styled.div`
-  display: flex;
-  justify-content: flex-end;
+  display: grid;
+  grid-template-columns: 230px 60px 40px;
+  align-content: end;
   color: black;
   padding: 3px 0;
 
@@ -42,6 +43,7 @@ const PostList = () => {
         <Link key={id} to={`/post/${id}`}>
           <h3>{title}</h3>
           <PostDetail>
+            <span />
             <span className="nickname"> {nickname} </span>
             <span className="like">
               <BsSuitHeartFill
