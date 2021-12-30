@@ -94,8 +94,18 @@ const Wallet = ({ state, dispatch }) => {
   const { Panel } = Collapse;
 
   const incomeOk = () => {
-    if (title === null || title.charAt(0) === " ") { alert("내역을 입력해주세요"); return; }
-    if (price === null || price === 0) { alert("가격을 입력해주세요"); return; }
+    if (title === null || title.charAt(0) === " " || title === "") {
+      Modal.warning({
+        title: '제목을 입력해주세요',
+      });
+      return;
+    }
+    if (price === null || price === 0 || price.charAt(0) === " " || price === "") {
+      Modal.warning({
+        title: '가격을 입력해주세요',
+      });
+      return; 
+    }
     setIsIncomeVisible(false);
     dispatch({ type: "add_income", title: title, price: parseInt(price) });
     setTitle(null);
@@ -109,8 +119,18 @@ const Wallet = ({ state, dispatch }) => {
   };
 
   const consumeOk = () => {
-    if (title === null) { alert("내역을 입력해주세요"); return; }
-    if (price === null || price === 0) { alert("가격을 입력해주세요"); return; }
+    if (title === null || title.charAt(0) === " " || title === "") {
+      Modal.warning({
+        title: '제목을 입력해주세요',
+      });
+      return;
+    }
+    if (price === null || price === 0 || price.charAt(0) === " " || price === "") {
+      Modal.warning({
+        title: '가격을 입력해주세요',
+      });
+      return; 
+    }
     setIsConsumeVisible(false);
     dispatch({ type: "add_consume", title: title, price: parseInt(price) });
     setTitle(null);
@@ -124,8 +144,18 @@ const Wallet = ({ state, dispatch }) => {
   };
 
   const investOk = () => {
-    if (title === null) { alert("내역을 입력해주세요"); return; }
-    if (price === null || price === 0) { alert("가격을 입력해주세요"); return; }
+    if (title === null || title.charAt(0) === " " || title === "") {
+      Modal.warning({
+        title: '제목을 입력해주세요',
+      });
+      return;
+    }
+    if (price === null || price === 0 || price.charAt(0) === " " || price === "") {
+      Modal.warning({
+        title: '가격을 입력해주세요',
+      });
+      return; 
+    }
     setIsInvestVisible(false);
     dispatch({ type: "add_invest", title: title, price: parseInt(price) });
     setTitle(null);
@@ -139,8 +169,18 @@ const Wallet = ({ state, dispatch }) => {
   };
 
   const depositOk = () => {
-    if (title === null) { alert("내역을 입력해주세요"); return; }
-    if (price === null || price === 0) { alert("가격을 입력해주세요"); return; }
+    if (title === null || title.charAt(0) === " " || title === "") {
+      Modal.warning({
+        title: '제목을 입력해주세요',
+      });
+      return;
+    }
+    if (price === null || price === 0 || price.charAt(0) === " " || price === "") {
+      Modal.warning({
+        title: '가격을 입력해주세요',
+      });
+      return; 
+    }
     setIsDepositVisible(false);
     dispatch({ type: "add_deposit", title: title, price: parseInt(price) });
     setTitle(null);
