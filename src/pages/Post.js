@@ -71,7 +71,7 @@ const Post = () => {
       </div>
       <p>{contents}</p>
       <Tiles
-        name="난진"
+        name={`${nickname}님의 `}
         current="27,450"
         total="397,530"
         v1="300,000"
