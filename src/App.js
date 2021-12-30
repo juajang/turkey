@@ -22,7 +22,7 @@ function App() {
           <Header />
           <Routes>
             <Route exact path="/" element={<Feed />} />
-            <Route path="community" element={<Community />} />
+            <Route path="/post" element={<Community />} />
             <Route path="/post/:id" element={<Post />} />
             <Route path="pick-me" element={<PickMe />} />
             <Route

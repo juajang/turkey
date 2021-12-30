@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import { GiHamburgerMenu } from "react-icons/gi";
+import { IoIosMenu } from "react-icons/io";
 import { Drawer } from "antd";
 import { Link, useLocation } from "react-router-dom";
 
 const HeaderWrapper = styled.header`
   width: 100%;
   position: relative;
-  height: 80px;
+  height: 60px;
   font-size: 25px;
   font-weight: 550;
   display: grid;
@@ -15,13 +15,16 @@ const HeaderWrapper = styled.header`
 `;
 
 const MenuButton = styled.button`
-  background: transparent;
   outline: none;
   border: none;
   cursor: pointer;
   position: absolute;
   top: 5px;
-  left: 5px;
+  left: 8px;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background-color: #185dce;
 `;
 
 const DrawerContents = styled.div`
@@ -39,6 +42,18 @@ const DrawerContents = styled.div`
 
   .menu {
     padding: 5px 1em 0 1em;
+  }
+
+  .img-wrapper {
+    padding: 1rem 0;
+    display: grid;
+    place-items: center;
+  }
+
+  img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
   }
 `;
 
@@ -60,22 +75,33 @@ const Header = () => {
       <HeaderWrapper>
         <h1>{title || "FEED"}</h1>
         <MenuButton>
-          <GiHamburgerMenu onClick={handleClick} size={50} />
+          <IoIosMenu
+            onClick={handleClick}
+            size={25}
+            color="white"
+            style={{
+              position: "relative",
+              top: 2,
+            }}
+          />
         </MenuButton>
       </HeaderWrapper>
       <Drawer
-        size="default"
+        width="210px"
         placement="left"
         onClose={handleClose}
         visible={menuVisible}
         onClick={handleClose}
       >
         <DrawerContents>
+          <div className="img-wrapper">
+            <img alt="character_sol" src="/images/character_sol.png" />
+          </div>
           <div className="category">HOME</div>
           <Link to="/">
             <div className="menu">FEED</div>
           </Link>
-          <Link to="/community">
+          <Link to="/post">
             <div className="menu">COMMUNITY</div>
           </Link>
           <div className="category">MY PAGE</div>
