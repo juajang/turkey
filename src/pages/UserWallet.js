@@ -172,9 +172,10 @@ const Wallet = ({ state }) => {
               <div
                 className="income"
                 style={{
-                  width: "100px",
+                  width: 120,
                   paddingTop: "12px",
-                  paddingLeft: "16px",
+                  paddingLeft: "40px",
+                  color: "black",
                 }}
               >
                 {priceToString(consume + invest + deposit)}
