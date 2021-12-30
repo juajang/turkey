@@ -225,14 +225,18 @@ const Wallet = ({ state, dispatch }) => {
 
       <span
         className="like"
-        style={{ placeItems: "end", float: "right", marginRight: "80px" }}
+        style={{ placeItems: "end", float: "right", marginRight: "60px" }}
       >
         <DollarOutlined style={{ color: "#FBB117", marginRight: "5px" }} />
         20
       </span>
 
+      <div style={{color: "red", position:"relative", display: "grid", placeItems: "center", marginTop:"20px"}}>
+        수익률 +15.5%
+      </div>
+
       <Card
-        style={{ margin: "auto", marginTop: "30px", width: 200, height: 200 }}
+        style={{ margin: "auto", marginTop: "10px", width: 200, height: 200 }}
       >
         <DoughnutChart
           data={[consume, invest, deposit]}
