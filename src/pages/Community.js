@@ -53,6 +53,7 @@ const Community = () => {
             key={data.id}
             index={index}
             fullWidth={true}
+            url={`/user/${data.id}`}
             style={{
               display: "flex",
               marginBottom: "10px",
@@ -67,6 +68,7 @@ const Community = () => {
             key={data.id}
             index={index}
             fullWidth={true}
+            url={`/user/${data.id}`}
             style={{
               display: "flex",
               marginBottom: "10px",
