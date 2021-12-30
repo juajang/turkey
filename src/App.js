@@ -10,6 +10,7 @@ import Wallet from "./pages/Wallet";
 import PickMe from "./pages/PickMe";
 import Recommend from "./pages/Recommend";
 import Post from "./pages/Post";
+import UserWallet from "./pages/UserWallet";
 import { initialState, reducer, init } from "./reducer/wallet";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
             <Route exact path="/" element={<Feed />} />
             <Route path="/community" element={<Community />} />
             <Route path="/post/:id" element={<Post />} />
+            <Route path="/user/:id" element={<UserWallet state={state} />} />
             <Route path="pick-me" element={<PickMe />} />
             <Route
               path="wallet"

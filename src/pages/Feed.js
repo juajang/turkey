@@ -81,7 +81,7 @@ const Feed = () => {
     <>
       <GridContainer>
         {data.slice(0, 4).map((data, index) => (
-          <ContentCard {...data} index={index} />
+          <ContentCard {...data} url={`/user/${data.id}`} index={index} />
         ))}
       </GridContainer>
       <CardContainer>
@@ -90,6 +90,7 @@ const Feed = () => {
             {...data}
             key={data.id}
             index={index}
+            url={`/user/${data.id}`}
             fullWidth={true}
             style={{
               display: "flex",
