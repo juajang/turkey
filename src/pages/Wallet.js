@@ -79,8 +79,8 @@ const Wallet = ({ state, dispatch }) => {
   const [isConsumeVisible, setIsConsumeVisible] = useState(false);
   const [isInvestVisible, setIsInvestVisible] = useState(false);
   const [isDepositVisible, setIsDepositVisible] = useState(false);
-  const [title, setTitle] = useState("");
-  const [price, setPrice] = useState(0);
+  const [title, setTitle] = useState(null);
+  const [price, setPrice] = useState(null);
   const {
     income,
     consume,
@@ -94,55 +94,63 @@ const Wallet = ({ state, dispatch }) => {
   const { Panel } = Collapse;
 
   const incomeOk = () => {
+    if (title === null || title.charAt(0) === " ") { alert("내역을 입력해주세요"); return; }
+    if (price === null || price === 0) { alert("가격을 입력해주세요"); return; }
     setIsIncomeVisible(false);
-    dispatch({ type: "add_income", title: title, price: parseInt(price)});
-    setTitle("");
-    setPrice(0);
+    dispatch({ type: "add_income", title: title, price: parseInt(price) });
+    setTitle(null);
+    setPrice(null);
   };
 
   const incomeCancel = () => {
     setIsIncomeVisible(false);
-    setTitle("");
-    setPrice(0);
+    setTitle(null);
+    setPrice(null);
   };
 
   const consumeOk = () => {
+    if (title === null) { alert("내역을 입력해주세요"); return; }
+    if (price === null || price === 0) { alert("가격을 입력해주세요"); return; }
     setIsConsumeVisible(false);
-    dispatch({ type: "add_consume", title: title, price: parseInt(price)});
-    setTitle("");
-    setPrice(0);
+    dispatch({ type: "add_consume", title: title, price: parseInt(price) });
+    setTitle(null);
+    setPrice(null);
   };
 
   const consumeCancel = () => {
     setIsConsumeVisible(false);
-    setTitle("");
-    setPrice(0);
+    setTitle(null);
+    setPrice(null);
   };
 
   const investOk = () => {
+    if (title === null) { alert("내역을 입력해주세요"); return; }
+    if (price === null || price === 0) { alert("가격을 입력해주세요"); return; }
     setIsInvestVisible(false);
-    dispatch({ type: "add_invest", title: title, price: parseInt(price)});
-    setTitle("");
-    setPrice(0);
+    dispatch({ type: "add_invest", title: title, price: parseInt(price) });
+    setTitle(null);
+    setPrice(null);
   };
 
   const investCancel = () => {
     setIsInvestVisible(false);
-    setTitle("");
-    setPrice(0);
+    setTitle(null);
+    setPrice(null);
   };
 
   const depositOk = () => {
+    if (title === null) { alert("내역을 입력해주세요"); return; }
+    if (price === null || price === 0) { alert("가격을 입력해주세요"); return; }
     setIsDepositVisible(false);
-    dispatch({ type: "add_deposit", title: title, price: parseInt(price)});
-    setTitle("");
-    setPrice(0);
+    dispatch({ type: "add_deposit", title: title, price: parseInt(price) });
+    setTitle(null);
+    setPrice(null);
   };
 
   const depositCancel = () => {
     setIsDepositVisible(false);
-    setTitle("");
-    setPrice(0);
+    setTitle(null);
+    setPrice(null);
   };
 
   const Income = () => {
@@ -386,19 +394,21 @@ const Wallet = ({ state, dispatch }) => {
         onCancel={incomeCancel}
       >
         <Form>
-          <Form.Item label="수입 이름" rules={[{required: true, message: 'Please input your username!'}]}>
+          <Form.Item label="수입 내역" rules={[{ required: true, message: 'Please input your username!' }]}>
             <Input
-              placeholder="이름을 입력해주세요"
+              placeholder="내역을 입력해주세요"
+              value={title}
               onChange={(event) => {
                 setTitle(event.currentTarget.value);
               }}
             />
           </Form.Item>
-          <Form.Item label="가격" rules={[{type: "number", message: "Please input number"}, {required: true, message: "Please input your username!"}]}>
+          <Form.Item label="가격" rules={[{ type: "number", message: "Please input number" }, { required: true, message: "Please input your username!" }]}>
             <Input
               placeholder="가격을 입력해주세요"
+              value={price}
               onChange={(event) => {
-                setPrice(event.currentTarget.value);
+                if (!isNaN(event.currentTarget.value)) setPrice(event.currentTarget.value);
               }}
             />
           </Form.Item>
@@ -412,19 +422,21 @@ const Wallet = ({ state, dispatch }) => {
         onCancel={consumeCancel}
       >
         <Form>
-          <Form.Item label="지출 이름" rules={[{required: true, message: 'Please input your username!'}]}>
+          <Form.Item label="지출 내역" rules={[{ required: true, message: 'Please input your username!' }]}>
             <Input
-              placeholder="이름을 입력해주세요"
+              placeholder="내역을 입력해주세요"
+              value={title}
               onChange={(event) => {
                 setTitle(event.currentTarget.value);
               }}
             />
           </Form.Item>
-          <Form.Item label="가격" rules={[{type: "number", message: "Please input number"}, {required: true, message: 'Please input your username!'}]}>
+          <Form.Item label="가격" rules={[{ type: "number", message: "Please input number" }, { required: true, message: 'Please input your username!' }]}>
             <Input
               placeholder="가격을 입력해주세요"
+              value={price}
               onChange={(event) => {
-                setPrice(event.currentTarget.value);
+                if (!isNaN(event.currentTarget.value)) setPrice(event.currentTarget.value);
               }}
             />
           </Form.Item>
@@ -438,19 +450,21 @@ const Wallet = ({ state, dispatch }) => {
         onCancel={investCancel}
       >
         <Form>
-          <Form.Item label="투자 이름" rules={[{required: true, message: 'Please input your username!'}]}>
+          <Form.Item label="투자 내역" rules={[{ required: true, message: 'Please input your username!' }]}>
             <Input
-              placeholder="이름을 입력해주세요"
+              placeholder="내역을 입력해주세요"
+              value={title}
               onChange={(event) => {
                 setTitle(event.currentTarget.value);
               }}
             />
           </Form.Item>
-          <Form.Item label="가격" rules={[{type: "number", message: "Please input number"}, {required: true, message: 'Please input your username!'}]}>
+          <Form.Item label="가격" rules={[{ type: "number", message: "Please input number" }, { required: true, message: 'Please input your username!' }]}>
             <Input
               placeholder="가격을 입력해주세요"
+              value={price}
               onChange={(event) => {
-                setPrice(event.currentTarget.value);
+                if (!isNaN(event.currentTarget.value)) setPrice(event.currentTarget.value);
               }}
             />
           </Form.Item>
@@ -464,19 +478,21 @@ const Wallet = ({ state, dispatch }) => {
         onCancel={depositCancel}
       >
         <Form>
-          <Form.Item label="저축 이름" rules={[{required: true, message: 'Please input your username!'}]}>
+          <Form.Item label="저축 내역" rules={[{ required: true, message: 'Please input your username!' }]}>
             <Input
-              placeholder="이름을 입력해주세요"
+              placeholder="내역을 입력해주세요"
+              value={title}
               onChange={(event) => {
                 setTitle(event.currentTarget.value);
               }}
             />
           </Form.Item>
-          <Form.Item label="가격" rules={[{type: "number", message: "Please input number"}, {type: 'number', required: true, message: 'Please input your username!'}]}>
+          <Form.Item label="가격" rules={[{ type: "number", message: "Please input number" }, { type: 'number', required: true, message: 'Please input your username!' }]}>
             <Input
               placeholder="가격을 입력해주세요"
+              value={price}
               onChange={(event) => {
-                setPrice(event.currentTarget.value);
+                if (!isNaN(event.currentTarget.value)) setPrice(event.currentTarget.value);
               }}
             />
           </Form.Item>
